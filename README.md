@@ -1,8 +1,11 @@
 # QtRaspberryPi4
 
 wget http://download.qt.io/official_releases/qt/5.12/5.12.7/single/qt-everywhere-src-5.12.7.tar.xz
+
 md5sum qt-everywhere-src-5.12.7.tar.xz
+
 tar xf qt-everywhere-src-5.12.7.tar.xz
+
 git clone https://github.com/oniongarlic/qt-raspberrypi-configuration.git
 
 cd qt-raspberrypi-configuration && make install DESTDIR=../qt-everywhere-src-5.12.7
@@ -10,6 +13,7 @@ cd qt-raspberrypi-configuration && make install DESTDIR=../qt-everywhere-src-5.1
 sudo apt-get update
 
 sudo apt-get install build-essential libfontconfig1-dev libdbus-1-dev libfreetype6-dev libicu-dev libinput-dev libxkbcommon-dev libsqlite3-dev libssl-dev libpng-dev libjpeg-dev libglib2.0-dev libraspberrypi-dev
+
 sudo apt-get install mesa-utils libegl1-mesa libegl1-mesa-dev libgbm-dev libgbm1 libgl1-mesa-dev libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev 
 
 
@@ -22,19 +26,31 @@ PKG_CONFIG_LIBDIR=/usr/lib/arm-linux-gnueabihf/pkgconfig:/usr/share/pkgconfig CF
 sudo make -j2
 
 WORK=$PWD
+
 cd ./qtlocation/src/3rdparty/clip2tri/
+
 sudo make
+
 cd ./qtlocation/src/3rdparty/clipper/
+
 sudo make
+
 cd ./qtlocation/src/3rdparty/poly2tri/
+
 sudo make
+
 cd $WORK
+
 sudo make install
+
 cd ./qtvirtualkeyboard/src/
+
 sudo apt-get install libxcb1-dev
+
 sudo apt-get install libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev
 
 make
+
 sudo nano ../qt-everywhere-src-5.12.7/qtscript/src/3rdparty/javascriptcore/JavaScriptCore/wtf/Platform.h
 
 #define WTF_CPU_ARM_TRADITIONAL 1
@@ -57,18 +73,29 @@ sudo nano ../qt-everywhere-src-5.12.7/qtscript/src/3rdparty/javascriptcore/JavaS
 /* #  error "Cannot use both of WTF_CPU_ARM_TRADITIONAL and WTF_CPU_ARM_THUMB2 platforms" */
 /* #endif !defined(WTF_CPU_ARM_TRADITIONAL) && !defined(WTF_CPU_ARM_THUMB2) */
 
+
 cd ../qt-everywhere-src-5.12.7/qtscript/src/3rdparty/javascriptcore/JavaScriptCore
+
 sudo make
+
 cd $WORK
+
 sudo make install
 
 /opt/Qt5.12/bin/qmake --version
 
 Install QT Creator
+
 wget http://download.qt.io/official_releases/qtcreator/4.9/4.9.0/qt-creator-opensource-src-4.9.0.tar.xz
+
 tar xf qt-creator-opensource-src-4.9.0.tar.xz qt-creator-opensource-src-4.9.0/
+
 cd qt-creator-opensource-src-4.9.0/
+
 /opt/Qt5.12/bin/qmake
+
 make
+
 sudo make install INSTALL_ROOT=/opt/QtCreator4.9
+
 /opt/QtCreator4.9/bin/qtcreator
